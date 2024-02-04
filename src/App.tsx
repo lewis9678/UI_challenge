@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import styled from "styled-components";
+import { useTheme } from "./context/theme-context";
+import DepositModal from "./pages/depositModal";
 
 function App() {
+  const { toggleTheme } = useTheme();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container className="App">
+      <Button onClick={toggleTheme}>toggle theme</Button>
+      <DepositModal />
+    </Container>
   );
 }
+
+const Container = styled.div`
+  width: 100vw;
+  height: 100vh;
+  background-color: #bfbfbf;
+  overflow: hidden;
+`;
+
+const Button = styled.button`
+  display: block;
+  width: 200px;
+  height: 64px;
+  line-height: 64px;
+  margin: 20px auto 0;
+  border-radius: 6px;
+  border: none;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+  color: ${(props) => props.theme.reverseColor};
+  background-color: ${(props) => props.theme.primaryColor};
+  cursor: pointer;
+`;
 
 export default App;
